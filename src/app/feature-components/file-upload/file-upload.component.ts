@@ -25,7 +25,10 @@ export class FileUploadComponent {
       formData.append('email', this.email);
 
       this.http
-        .post('http://localhost:8080/invite/generate/v2', formData)
+        .post(
+          'https://railway-ticket-calendar-invite.onrender.com/invite/generate/v2',
+          formData
+        )
         .subscribe({
           next: (response) => alert('Invite sent successfully!'),
           error: (error) => alert('Error: ' + error.message),
