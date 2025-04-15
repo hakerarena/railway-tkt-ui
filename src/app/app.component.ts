@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FileUploadComponent } from './feature-components/file-upload/file-upload.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  imports: [FileUploadComponent],
 })
 export class AppComponent {
   title = 'railway-tkt-ui';
