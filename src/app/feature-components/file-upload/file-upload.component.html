@@ -1,10 +1,40 @@
-<div class="file-upload-container">
-  <h2>Upload PDF and Send Invite</h2>
-  <input
-    type="file"
-    (change)="onFileSelected($event)"
-    accept="application/pdf"
-  />
-  <input type="email" [(ngModel)]="email" placeholder="Enter your email" />
-  <button (click)="onUpload()">Upload and Send</button>
+<div class="container">
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h2 class="text-center mb-0">Upload PDF and Send Invite</h2>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label for="fileInput" class="form-label">Select PDF File</label>
+          <input
+            type="file"
+            id="fileInput"
+            name="fileInput"
+            class="form-control"
+            (change)="onFileSelected($event)"
+            accept="application/pdf"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="emailInput" class="form-label">Email Address</label>
+          <input
+            type="email"
+            id="emailInput"
+            name="emailInput"
+            class="form-control"
+            [(ngModel)]="email"
+            placeholder="Enter your email"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary w-100"
+          (click)="onUpload()"
+        >
+          Upload and Send
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

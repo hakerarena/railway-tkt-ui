@@ -7,6 +7,7 @@ import { GenerateInviteService } from '../../services/generate-invite.service';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
   imports: [FormsModule],
+  standalone: true,
 })
 export class FileUploadComponent {
   selectedFile: File | null = null;
