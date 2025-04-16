@@ -15,6 +15,7 @@
             (change)="onFileSelected($event)"
             accept="application/pdf"
           />
+          <small *ngIf="fileError" class="text-danger">{{ fileError }}</small>
         </div>
         <div class="mb-3">
           <label for="emailInput" class="form-label">Email Address</label>
@@ -24,15 +25,20 @@
             name="emailInput"
             class="form-control"
             [(ngModel)]="email"
+            (ngModelChange)="validateEmail()"
             placeholder="Enter your email"
           />
+          <small *ngIf="email && !isEmailValid" class="text-danger"
+            >Invalid email address.</small
+          >
         </div>
         <button
           type="button"
           class="btn btn-primary w-100"
           (click)="onUpload()"
+          [disabled]="!selectedFile || !isEmailValid"
         >
-          Upload and Send
+          Upload and Send Invite
         </button>
       </form>
     </div>
