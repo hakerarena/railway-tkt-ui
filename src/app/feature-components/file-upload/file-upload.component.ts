@@ -1,36 +1,32 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { GenerateInviteService } from '../../services/generate-invite.service';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule],
 })
 export class FileUploadComponent {
   selectedFile: File | null = null;
   email: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private generateInviteService: GenerateInviteService) {}
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
+      this.selectedFile = input.files[0];
+    }
   }
 
   onUpload(): void {
     if (this.selectedFile && this.email) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-      formData.append('email', this.email);
-
-      this.http
-        .post(
-          'https://railway-ticket-calendar-invite.onrender.com/invite/generate/v2',
-          formData
-        )
+      this.generateInviteService
+        .uploadFile(this.selectedFile, this.email)
         .subscribe({
-          next: (response) => alert('Invite sent successfully!'),
+          next: () => alert('Invite sent successfully!'),
           error: (error) => alert('Error: ' + error.message),
         });
     } else {
