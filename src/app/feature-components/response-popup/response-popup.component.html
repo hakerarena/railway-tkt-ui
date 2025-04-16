@@ -1,0 +1,13 @@
+<div class="popup">
+  <div
+    class="popup-content"
+    [ngClass]="{ success: isSuccess, failure: !isSuccess }"
+  >
+    <div class="popup-icon">
+      <span *ngIf="isSuccess">😊</span>
+      <span *ngIf="!isSuccess">😞</span>
+    </div>
+    <p>{{ message }}</p>
+    <button class="btn btn-secondary" (click)="onClose()">Close</button>
+  </div>
+</div>

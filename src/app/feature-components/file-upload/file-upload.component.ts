@@ -2,12 +2,13 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GenerateInviteService } from '../../services/generate-invite.service';
+import { ResponsePopupComponent } from '../response-popup/response-popup.component';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ResponsePopupComponent],
   standalone: true,
 })
 export class FileUploadComponent {
@@ -35,6 +36,9 @@ export class FileUploadComponent {
         this.selectedFile = null;
         this.fileError = 'Only PDF files are allowed.';
       }
+    } else {
+      this.selectedFile = null;
+      this.fileError = 'Please select a file.';
     }
   }
 

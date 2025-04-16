@@ -41,10 +41,9 @@
         >
           <span *ngIf="!isLoading">Upload and Send Invite</span>
           <span *ngIf="isLoading">
-            <div
+            <output
               class="spinner-border spinner-border-sm text-light"
-              role="status"
-            ></div>
+            ></output>
             Sending...
           </span>
         </button>
@@ -52,19 +51,11 @@
     </div>
   </div>
 
-  <!-- Popup Modal -->
-  <div
-    class="popup"
+  <!-- Popup Component -->
+  <app-response-popup
     *ngIf="showPopup"
-    [ngClass]="{ success: isSuccess, failure: !isSuccess }"
-  >
-    <div class="popup-content">
-      <div class="popup-icon">
-        <span *ngIf="isSuccess">😊</span>
-        <span *ngIf="!isSuccess">😞</span>
-      </div>
-      <p>{{ popupMessage }}</p>
-      <button class="btn btn-secondary" (click)="closePopup()">Close</button>
-    </div>
-  </div>
+    [isSuccess]="isSuccess"
+    [message]="popupMessage"
+    (close)="closePopup()"
+  ></app-response-popup>
 </div>
