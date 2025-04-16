@@ -1,7 +1,9 @@
+<app-header></app-header>
+
 <div class="container">
   <div class="card shadow-sm">
     <div class="card-header">
-      <h2 class="text-center mb-0">Upload PDF and Send Invite</h2>
+      <h2 class="text-center mb-0">Upload PDF and Send Calendar Invite</h2>
     </div>
     <div class="card-body">
       <form>
@@ -18,7 +20,7 @@
           />
           <small *ngIf="fileError" class="text-danger">{{ fileError }}</small>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 mt-5">
           <label for="emailInput" class="form-label">Email Address</label>
           <input
             type="email"
@@ -33,25 +35,26 @@
             >Invalid email address.</small
           >
         </div>
-        <button
-          type="button"
-          class="btn btn-primary w-100"
-          (click)="onUpload()"
-          [disabled]="!selectedFile || !isEmailValid || isLoading"
-        >
-          <span *ngIf="!isLoading">Upload and Send Invite</span>
-          <span *ngIf="isLoading">
-            <output
-              class="spinner-border spinner-border-sm text-light"
-            ></output>
-            Sending...
-          </span>
-        </button>
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-primary w-50 mt-5"
+            (click)="onUpload()"
+            [disabled]="!selectedFile || !isEmailValid || isLoading"
+          >
+            <span *ngIf="!isLoading">Upload and Send Invite</span>
+            <span *ngIf="isLoading">
+              <output
+                class="spinner-border spinner-border-sm text-light"
+              ></output>
+              Sending...
+            </span>
+          </button>
+        </div>
       </form>
     </div>
   </div>
 
-  <!-- Popup Component -->
   <app-response-popup
     *ngIf="showPopup"
     [isSuccess]="isSuccess"
